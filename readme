@@ -1,0 +1,171 @@
+Absolutely—here’s the big picture of what you’ve built so far, in clean, step-by-step layers. Think of it as the game loop from systems → world → combat → feedback.
+
+1) Foundation (Day 1)
+
+Project shell: Unity 6 URP (Forward+), 60 FPS target.
+
+Camera: Cinemachine camera (Framing Transposer), Confiner set; view framed around the pawn.
+
+Input: Input Actions (Move / Dash / Ability1–3 / Build / Cancel).
+
+Time control: TimeScaleService (stack-safe slow/restore).
+
+✅ Smoke test: scene loads, no console errors; pawn moves & dash works.
+
+2) World & Placement (Day 2)
+
+Lanes & paths: Spline lanes (2–3) for enemies; EnemyMoverSpline moves along and exposes DistanceToGoal.
+
+Spawner: EnemySpawner/EnemySpawnerSpline instantiates enemies onto a lane, cadence/count configurable.
+
+Build nodes: BuildNode prefabs (Capillary/Lymph/Barrier), hover highlight; raycast to BuildSlot layer only.
+
+Placement: PlacementController with a non-blocking ghost, “show only when valid,” placementYOffset, and slot checks.
+
+2.5) Test Harness & Fixes
+
+Drop-in scene test (spawners + nodes + HUD) to validate pathing and placement.
+
+Typical fixes you hit: ground collider, camera frame/offset, ghost popping, missing methods—now patched.
+
+3) Circadian pacing & HUD (Day 3)
+
+BodyClockDirector: Phases (Sleep → Morning → PostMeal → Evening), durations, colors, and events:
+
+OnPhaseChanged(BodyPhase)
+
+OnMultipliersChanged(PhaseMultipliers) → { atpIncome, enemySpeed, repairCost }
+
+OnPlanningWindow(bool) (slow-time window start/end)
+
+Planning Windows: At Sleep & PostMeal start, push timeScale 0.35 for ~7s (unscaled timing, auto-restore).
+
+Clock HUD: ClockRingHUD (ring fill for phase progress, rotating cursor for day progress, pips for upcoming planning windows, wedge during active window).
+
+Hooks:
+
+Enemies read enemySpeed (via adapter).
+
+Economy originally via ATPWallet (later superseded by ResourceBank).
+
+3.5) Combat core & economy (Day 3.5)
+
+Economy: ResourceBank (ATP/Cytokines) with 6-second unscaled tick × phase atpIncome; HUD binder shows ATP.
+
+Damage model:
+
+DamagePacket → passed to Health.ApplyDamage (order: resist → mark multiplier → HP; supports Execute).
+
+StatusEffects → Mark (bonus damage taken), Neutralize (reduce enemy outgoing damage; capped).
+
+Health events drive popups & death; DestroyOnDeath removes enemies cleanly.
+
+Towers:
+
+TowerBase (range, fire rate, cost).
+
+TowerTargetingGoal (closest-to-goal using DistanceToGoal).
+
+TowerShooter + ProjectileHoming (homing, applies Mark/Neutralize/Execute).
+
+Prefabs: Macrophage Post (adds Mark, executes <15% HP), B-Cell Turret (applies Neutralize, max 2).
+
+Placement + costs:
+
+PlacementController reads TowerBase.buildCostATP, calls ResourceBank.SpendATP().
+
+Blocks placement if insufficient ATP; optional deny SFX.
+
+Damage popups:
+
+DamagePopupSpawner + DamagePopup show damage and remaining HP over the hit.
+
+4) Crowd control & risk meters (Day 4)
+
+CC system: CrowdControl on enemies aggregates slows (sum → resist → cap at −70%) and snares (speed=0). Pure logic; VFX separate.
+
+Speed adapter: EnemySpeedPhaseAdapter now multiplies baseSpeed × phaseSpeed × CC.SpeedMultiplier every frame.
+
+CC towers:
+
+Mast Trap (MastTrapPulse): periodic AoE slow (−40% for 3s every 8s) + Mark via degranulation pulse.
+
+NET Pit (NETPitAura): applies snare 2.5s on entry (refreshes only when re-entering).
+
+Risk meters:
+
+InflammationMeter (+Scriptable MeterConfig): raises stakes; provides Damage bonus and Execute bonus; defines ATP tax next phase (−10% per +2 levels over baseline).
+
+SepsisMeter (+config): rises on breach; defeat at 100.
+
+GoalZone adds Sepsis when enemies reach the end and deletes them.
+
+GlobalCombatModifiers.Bind(Inflammation) → projectiles read global DamageMult and ExecuteBonus.
+
+ATPTaxAdapter listens to phase changes, applies per-phase income tax to ResourceBank via an external multiplier hook.
+
+Meters HUD: MetersHUD animates Inflammation & Sepsis bars (vertical filled images, color-lerped by config).
+
+How it all talks (runtime flow)
+
+Clock ticks → fires phase events
+
+UI recolors ring; planning window may slow time (0.35).
+
+Enemy speed & ATP tick scale by multipliers; next-phase ATP tax is latched from Inflammation.
+
+Spawner feeds lanes with enemies**;** each enemy moves along its spline
+
+CC and phase scale their speed; snare sets speed to 0; slow reduces speed down to the −70% cap after resist.
+
+Placement gates towers by ATP cost
+
+Valid slot? Enough ATP? Place & deduct; ghost stays hidden unless valid.
+
+Targeting & firing
+
+Towers acquire the closest to goal in range, shoot homing projectiles.
+
+On hit
+
+Projectile composes a DamagePacket (with Mark/Neutralize/Execute), also applying Inflammation buffs.
+
+Health.ApplyDamage: resist → mark multiplier → HP; spawns damage popup (damage + remaining HP).
+
+If HP ≤ 0 → onDeath → DestroyOnDeath removes the enemy.
+
+If breach
+
+GoalZone adds Sepsis and removes the enemy. Sepsis 100 triggers defeat.
+
+HUD reflects state
+
+Clock ring (phase, progress, planning wedge), ATP text, Meters (Inflammation/Sepsis).
+
+Everything updates via events or per-frame reads (no GC spikes).
+
+What’s already meeting acceptance
+
+Short survival run is playable.
+
+Planning windows slow time and restore reliably; wedge visual animates.
+
+Towers kill enemies; Mark raises damage; Neutralize stacks cap.
+
+Slow cap respected (−70% after resist).
+
+ATP accrues on a 6s cadence (unscaled), scaled by phase (and taxed next phase by Inflammation).
+
+Sepsis rises on breaches; defeat hook available at 100.
+
+Clean mental model (cheat sheet)
+
+Systems: Time (Clock) → Economy (Bank) → Meta (Inflammation/Sepsis) → GlobalModifiers.
+
+World: Lanes (Splines) → Spawners → Enemies (Mover + Health + Status + CC).
+
+Player: BuildNodes + PlacementController (+ Costs) → Towers (Targeting + Shooter + Projectile).
+
+Combat: Projectile → DamagePacket → Health → Death/Popup/Status.
+
+UI: ClockRingHUD + Resource HUD + MetersHUD.
