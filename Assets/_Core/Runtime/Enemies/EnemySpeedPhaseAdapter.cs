@@ -30,6 +30,8 @@ namespace Core.Enemies
                 clock.OnMultipliersChanged += OnMult;
                 _phaseScale = clock.Multipliers.enemySpeed;
             }
+            float cc = (_cc ? _cc.SpeedMultiplier : 1f);
+            _mover.speed = _baseSpeed * _phaseScale * cc * Core.Combat.GlobalCombatModifiers.EnemySpeedMultPerk;
         }
         void OnDisable() { if (clock) clock.OnMultipliersChanged -= OnMult; }
 
@@ -38,7 +40,8 @@ namespace Core.Enemies
         {
             if (!_mover) return;
             float cc = (_cc ? _cc.SpeedMultiplier : 1f);
-            _mover.speed = _baseSpeed * _phaseScale * cc;
+            _mover.speed = _baseSpeed * _phaseScale * cc * Core.Combat.GlobalCombatModifiers.EnemySpeedMultPerk;
+
         }
 
 

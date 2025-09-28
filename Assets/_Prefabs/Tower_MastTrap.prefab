@@ -63,7 +63,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -62.106495, y: 240.50215, z: 44.799953}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.9348, y: 0.06838, z: 2.5457}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8552584009413525801}
@@ -99,16 +99,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35af961f06d3b6442ba18b20335755c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 4.5
-  slowMagnitude: 0.4
-  slowDuration: 3
   period: 8
+  pulseOnEnable: 0
+  radius: 4.5
   enemyMask:
     serializedVersion: 2
     m_Bits: 64
   maxHits: 32
+  slowMagnitude: 0.4
+  slowDuration: 3
   applyMark: 1
   markStacks: 1
+  inflammation: {fileID: 0}
+  inflPerEnemyHit: 1
+  inflMaxPerPulse: 3
   pulseVFX: {fileID: 0}
   pulseSFX: {fileID: 0}
 --- !u!114 &7154484087044769744
@@ -152,7 +156,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: a70802a9e379a72458c0f66381c13f76, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

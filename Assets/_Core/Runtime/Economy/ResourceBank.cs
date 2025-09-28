@@ -37,6 +37,11 @@ namespace Core.Economy
             _atpMult = Mathf.Max(0f, m.atpIncome);
         }
 
+        public bool SpendCytokines(int amount)
+        {
+        if (cytokines < amount) return false;
+        cytokines -= amount; OnChanged?.Invoke(); return true;
+        }
         void OnEnable()
         {
             if (clock)

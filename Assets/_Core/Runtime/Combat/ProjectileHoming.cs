@@ -65,6 +65,7 @@ namespace Core.Combat
 
 
                 bool exec = hp.Fraction <= execThresh && execThresh > 0f;
+
                 var packet = new DamagePacket
                 {
                 amount = dmgOut,

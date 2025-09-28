@@ -302,8 +302,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937129d3de5a3ca4f81589cfcb4a5634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 20
-  resist: 0.231
+  maxHP: 12
+  resist: 0.15
   onDamaged:
     m_PersistentCalls:
       m_Calls: []
