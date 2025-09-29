@@ -36,11 +36,16 @@ namespace Core.Economy
         {
             _atpMult = Mathf.Max(0f, m.atpIncome);
         }
-
+        public float PeekEffectiveATPMult()
+        {
+            float m = Mathf.Max(0f, _atpMult);
+            OnExternalMultiplierRequest?.Invoke(ref m);
+            return m;
+        }
         public bool SpendCytokines(int amount)
         {
-        if (cytokines < amount) return false;
-        cytokines -= amount; OnChanged?.Invoke(); return true;
+            if (cytokines < amount) return false;
+            cytokines -= amount; OnChanged?.Invoke(); return true;
         }
         void OnEnable()
         {
@@ -78,8 +83,8 @@ namespace Core.Economy
 
 
         public void AddCytokines(int amount) { cytokines += Mathf.Max(0, amount); OnChanged?.Invoke(); }
-        
-        
-        
+
+
+
     }
 }

@@ -44,6 +44,7 @@ public BodyClockDirector clock; public ResourceBank bank;
 
         void OnPhaseChanged(BodyPhase p)
         {
+            Debug.Log($"[PerkManager] Phase changed → {p}");
             // Sleep → open picker
             if (p == BodyPhase.Sleep)
                 PerkPickerUI.TryOpen(this);

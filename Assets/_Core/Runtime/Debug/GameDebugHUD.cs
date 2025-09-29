@@ -75,7 +75,10 @@ var enemies = FindObjectsOfType<Core.Combat.Health>();
 
         if (bank)
         {
-            GUILayout.Label($"ATP: {bank.atp:0} tick: {bank.atpPerTick:0} / {bank.tickIntervalSec:0}s (phase×tax applied)", _lh);
+            float mult = bank.PeekEffectiveATPMult();
+            GUILayout.Label($"ATP: {bank.atp:0}  tick: {bank.atpPerTick:0}/{bank.tickIntervalSec:0}s  effective×{mult:0.00}", _lh);
+            GUILayout.Label($"Cytokines: {bank.cytokines}", _lh);
+
         }
 
 
