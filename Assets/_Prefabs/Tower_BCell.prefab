@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8209986398882403275}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: YawPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3323345588399671799}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,9 @@ GameObject:
   - component: {fileID: 7911431333141984134}
   - component: {fileID: 2808638098858273588}
   - component: {fileID: 7785255856116144247}
-  m_Layer: 0
+  - component: {fileID: 8803106607158926948}
+  - component: {fileID: 7396283014209636416}
+  m_Layer: 8
   m_Name: Tower_BCell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,3 +207,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8940842442570379049}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &8803106607158926948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8940842442570379049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e61112a84c152294faab01af2e3ba720, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  priority: 60
+--- !u!114 &7396283014209636416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8940842442570379049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937129d3de5a3ca4f81589cfcb4a5634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  resist: 0
+  onDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []

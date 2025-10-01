@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 1920202790124720497}
   - component: {fileID: 4101162930756887171}
   - component: {fileID: 8538909222078684938}
+  - component: {fileID: 6393440459193087443}
   m_Layer: 6
   m_Name: Enemy_Elite_Blob
   m_TagString: Enemy
@@ -276,6 +277,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 041e2a5052df10f47a488df98f9c7f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6393440459193087443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2591347859904394286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9a63969aa0501b46ab747f419c55bb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 256
+  scanRadius: 2
+  attackRange: 1.6
+  retargetEvery: 0.25
+  preferCommander: 1
+  damagePerHit: 4
+  attackPeriod: 0.8
+  windup: 0.05
+  faceTarget: 1
+  mover: {fileID: 0}
 --- !u!1 &5774071631830421090
 GameObject:
   m_ObjectHideFlags: 0

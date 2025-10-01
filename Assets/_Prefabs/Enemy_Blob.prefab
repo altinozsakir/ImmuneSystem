@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 8316488911530565481}
   - component: {fileID: 8694974361448052308}
   - component: {fileID: 917827896885396187}
+  - component: {fileID: 6010968745042763158}
   m_Layer: 6
   m_Name: Enemy_Blob
   m_TagString: Enemy
@@ -378,3 +379,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slowResist: 0.15
   minSpeedFromSlows: 0.5
+--- !u!114 &6010968745042763158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8864186524542463381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9a63969aa0501b46ab747f419c55bb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 256
+  scanRadius: 2.62
+  attackRange: 3.56
+  retargetEvery: 0.25
+  preferCommander: 1
+  damagePerHit: 4
+  attackPeriod: 0.8
+  windup: 0.05
+  faceTarget: 1
+  mover: {fileID: 0}

@@ -13,14 +13,6 @@ MonoBehaviour:
   m_Name: BodyClock_Default
   m_EditorClassIdentifier: 
   phases:
-  - phase: 0
-    durationSec: 30
-    phaseColor: {r: 0.25, g: 0.35, b: 0.8, a: 1}
-    atpIncomeMult: 0.9
-    enemySpeedMult: 0.42
-    repairCostMult: 0.9
-    startPlanningOnEnter: 1
-    planningDurationSec: 7
   - phase: 1
     durationSec: 40
     phaseColor: {r: 0.35, g: 0.8, b: 0.5, a: 1}
@@ -28,7 +20,7 @@ MonoBehaviour:
     enemySpeedMult: 1.05
     repairCostMult: 1
     startPlanningOnEnter: 0
-    planningDurationSec: 0
+    planningDurationSec: 2
   - phase: 2
     durationSec: 30
     phaseColor: {r: 0.95, g: 0.7, b: 0.2, a: 1}
@@ -45,3 +37,11 @@ MonoBehaviour:
     repairCostMult: 1
     startPlanningOnEnter: 0
     planningDurationSec: 2.0054
+  - phase: 0
+    durationSec: 30
+    phaseColor: {r: 0.25, g: 0.35, b: 0.8, a: 1}
+    atpIncomeMult: 0.9
+    enemySpeedMult: 0.42
+    repairCostMult: 0.9
+    startPlanningOnEnter: 1
+    planningDurationSec: 7

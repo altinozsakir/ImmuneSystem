@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8552584009413525801}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: YawPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,9 @@ GameObject:
   - component: {fileID: 7154484087044769744}
   - component: {fileID: 305661812633319708}
   - component: {fileID: 6800133842291726087}
-  m_Layer: 0
+  - component: {fileID: 3086781281178741520}
+  - component: {fileID: 6398484275639732790}
+  m_Layer: 8
   m_Name: Tower_MastTrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,6 +188,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2026688160962162884}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &3086781281178741520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026688160962162884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e61112a84c152294faab01af2e3ba720, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  priority: 100
+--- !u!114 &6398484275639732790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026688160962162884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937129d3de5a3ca4f81589cfcb4a5634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  resist: 0
+  onDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6609440057667266745
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,7 +231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2355757642943776494}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

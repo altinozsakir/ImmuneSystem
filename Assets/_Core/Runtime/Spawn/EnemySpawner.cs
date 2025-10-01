@@ -33,17 +33,27 @@ namespace Core.Spawn
 
         void SpawnOne()
         {
-            var p0 = path.GetPoint(0);
-            Vector3 spawnPos = (p0 ? p0.position : transform.position) + new Vector3(0, startYOffset, 0);
+            SpawnOne(enemyPrefab);
+        }
+        public void SpawnOne(GameObject prefabOverride)
+        {
+            var prefab = prefabOverride ? prefabOverride : enemyPrefab;
+            if (!prefab)
+            {
+                Debug.LogWarning("[EnemySpawner] No enemy prefab assigned.");
+                return;
+            }
 
-            var go = Instantiate(enemyPrefab, spawnPos, Quaternion.identity, container ? container : transform);
+            var p0 = path ? path.GetPoint(0) : null;
+            Vector3 spawnPos = (p0 ? p0.position : transform.position) + new Vector3(0f, startYOffset, 0f);
+
+            var parent = container ? container : transform;
+            var go = Instantiate(prefab, spawnPos, Quaternion.identity, parent);
             go.tag = "Enemy";
             go.layer = LayerMask.NameToLayer("Enemy");
 
-            
             if (go.TryGetComponent<PathFollower>(out var follower))
             {
-
                 follower.enabled = false;
                 follower.path = path;
                 follower.enabled = true;

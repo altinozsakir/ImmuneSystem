@@ -24,7 +24,8 @@ namespace Core.Pathing
         public float DistanceToGoal => (float)Mathf.Max(0f, (float)(_length - _distance));
         public float NormalizedT => _length > 0.0001 ? (float)(_distance / _length) : 0f;
 
-
+                    bool _paused;
+public void SetPaused(bool paused) => _paused = paused;
         void Awake() => _rb = GetComponent<Rigidbody>();
         void OnEnable() { if (_rb) _rb.interpolation = RigidbodyInterpolation.Interpolate; }
 
@@ -58,10 +59,12 @@ else _spline = lane.Spline; // fallback if single-spline API is present
 
         void FixedUpdate()
         {
+            if (_paused) return;
+
             if (_spline == null || _length <= 0) return;
             _distance += speed * Time.fixedDeltaTime;
 
-
+            
             if (_distance >= _length)
             {
                 if (loop) _distance = 0.0f; else { _distance = _length; enabled = false; }
