@@ -11,7 +11,7 @@ namespace Core.WavesRuntime
         [Header("Refs")]
         public BodyClockDirector clock;
         [Tooltip("Lane spawners (index by Wave.laneIndex)")]
-        public EnemySpawnerSpline[] lanes;
+        public EnemySpawnerNav[] lanes;
         public WaveList waveList;
 
         [Header("Debug")]

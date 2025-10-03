@@ -43,12 +43,13 @@ namespace Core.Spawn
                 Debug.LogWarning("[EnemySpawner] No enemy prefab assigned.");
                 return;
             }
-
+            
             var p0 = path ? path.GetPoint(0) : null;
             Vector3 spawnPos = (p0 ? p0.position : transform.position) + new Vector3(0f, startYOffset, 0f);
 
             var parent = container ? container : transform;
             var go = Instantiate(prefab, spawnPos, Quaternion.identity, parent);
+            
             go.tag = "Enemy";
             go.layer = LayerMask.NameToLayer("Enemy");
 

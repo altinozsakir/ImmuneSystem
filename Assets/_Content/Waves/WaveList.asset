@@ -20,9 +20,9 @@ MonoBehaviour:
       cadence: 0.9
       count: 4
       laneIndex: 0
-      enemyPrefab: {fileID: 8864186524542463381, guid: 844a7838cb862974da828bc0d4f653e2, type: 3}
+      enemyPrefab: {fileID: 1291822611258787927, guid: b55fc4a279bce804a81be37b6ed00e77, type: 3}
       elitePrefab: {fileID: 2591347859904394286, guid: b9e17e4b6426bfd4f8db6514ac311239, type: 3}
-      eliteChance: 1
+      eliteChance: 0
   - phase: 2
     waves: []
   - phase: 3
