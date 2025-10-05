@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using Core.TimeSystem;   // BodyClockDirector, BodyPhase
 using Core.Waves;
-using Core.Spawn; // Add this if EnemySpawner is in Core.Spawning namespace
+using Core.Enemies; // Add this if EnemySpawner is in Core.Spawning namespace
 
 namespace Core.WavesRuntime
 {
@@ -86,10 +86,8 @@ namespace Core.WavesRuntime
 
                 // spawn (prefab override)
 
-                if (prefab)
-                    spawner.SpawnOne(prefab);   // requires tiny spawner patch below
-                else
-                    spawner.SpawnOne();         // fallback to its default
+
+                spawner.SpawnOne();         // fallback to its default
 
 
                 if (w.cadence > 0f) yield return new WaitForSeconds(w.cadence);

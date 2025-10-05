@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ace8952cef04154e94fc44185a99319, type: 3}
+  m_Name: ToxinSpitter
+  m_EditorClassIdentifier: 
+  displayName: Toxin Spitter
+  behavior: 1
+  uiColor: {r: 1, g: 1, b: 1, a: 1}
+  maxHP: 40
+  baseSpeed: 7
+  contactDamage: 3
+  attackRange: 20
+  attacksPerSecond: 0.66
+  atpRewardOnDeath: 4
+  flatArmor: 0.1
+  slowResist: 1
+  agentRadius: 0.3
+  agentHeight: 2
+  avoidancePriority: 55
+  scale: {x: 1, y: 1, z: 1}
+  visualPrefab: {fileID: 0}
+  hitSfx: {fileID: 0}
+  deathSfx: {fileID: 0}

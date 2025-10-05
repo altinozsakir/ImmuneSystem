@@ -94,7 +94,7 @@ namespace Core.Towers
 
                 // Apply slow via CrowdControl
                 if (tr.TryGetComponent<CrowdControl>(out var cc))
-                    cc.AddSlow(slowMagnitude, slowDuration);
+                    cc.ApplySlow(slowMagnitude, slowDuration);
 
                 // Apply Mark stacks
                 if (applyMark && markStacks > 0 && tr.TryGetComponent<StatusEffects>(out var st))

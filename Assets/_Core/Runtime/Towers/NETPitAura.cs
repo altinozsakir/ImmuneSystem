@@ -37,7 +37,7 @@ namespace Core.Towers
                 if (!_inside.Contains(tr))
                 {
                     // exposure start → apply snare
-                    if (tr.TryGetComponent<CrowdControl>(out var cc)) cc.AddSnare(snareDuration);
+                    if (tr.TryGetComponent<CrowdControl>(out var cc)) cc.ApplySnare(snareDuration);
                 }
             }
             // update inside set
