@@ -31,17 +31,17 @@ namespace Core.Enemies
             var brain = go.GetComponent<EnemyBrain>();
             if (brain)
             {
-                var sh = laneGoal.GetComponent<StructureHealth>() ?? laneGoal.gameObject.AddComponent<StructureHealth>();
-                brain.GetType().GetField("fallbackGoalBehaviour", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
-                    ?.SetValue(brain, sh);
+                var goalH = laneGoal ? laneGoal.GetComponent<IHittable>() : null; // StructureHealth implements IHittable
+                brain.fallbackGoal = goalH;              // one-time
+                brain.SetChase(goalH);
             }
 
             // Prepare Nav agent/mover
-            var nav = go.GetComponent<EnemyMoverNavmesh>();
+            // var nav = go.GetComponent<EnemyMoverNavmesh>();
             var agent = go.GetComponent<NavMeshAgent>();
 
             if (!agent) agent = go.AddComponent<NavMeshAgent>(); // safety
-            if (!nav) nav = go.AddComponent<EnemyMoverNavmesh>();
+            // if (!nav) nav = go.AddComponent<EnemyMoverNavmesh>();
 
             // Anti-jitter presets (light)
             agent.autoBraking = false;
@@ -53,8 +53,8 @@ namespace Core.Enemies
             if (rb) { rb.isKinematic = true; rb.interpolation = RigidbodyInterpolation.Interpolate; }
 
             // Pass the goal (this was the missing piece)
-            nav.enabled = true;
-            nav.SetGoal(laneGoal);
+            //nav.enabled = true;
+            //nav.SetGoal(laneGoal);
         }
 
         private Vector3 Jitter(Vector3 p, float r)

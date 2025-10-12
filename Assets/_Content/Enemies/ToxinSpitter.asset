@@ -18,7 +18,7 @@ MonoBehaviour:
   maxHP: 40
   baseSpeed: 7
   contactDamage: 3
-  attackRange: 20
+  attackRange: 7
   attacksPerSecond: 0.66
   atpRewardOnDeath: 4
   flatArmor: 0.1

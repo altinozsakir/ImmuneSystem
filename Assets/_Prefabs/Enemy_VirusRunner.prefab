@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 22848965904036366}
   - component: {fileID: 3812813595190715428}
   - component: {fileID: 3504470131129180059}
-  - component: {fileID: 3777382147989521697}
   - component: {fileID: 602944184456036403}
   - component: {fileID: 8990771526667805894}
   - component: {fileID: 2230253159849285720}
@@ -22,6 +21,8 @@ GameObject:
   - component: {fileID: 6073778983222426343}
   - component: {fileID: 82864262349591557}
   - component: {fileID: 4982157865564515842}
+  - component: {fileID: 6557072432050496802}
+  - component: {fileID: 7516218939583949706}
   m_Layer: 6
   m_Name: Enemy_VirusRunner
   m_TagString: Enemy
@@ -112,7 +113,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -147,26 +148,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!114 &3777382147989521697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1291822611258787927}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 937129d3de5a3ca4f81589cfcb4a5634, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHP: 12
-  resist: 0.15
-  onDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &602944184456036403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,7 +228,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 5
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6073778983222426343
 MonoBehaviour:
@@ -264,6 +245,7 @@ MonoBehaviour:
   interestMask:
     serializedVersion: 2
     m_Bits: 256
+  pruneInterval: 0.25
 --- !u!114 &82864262349591557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,3 +281,38 @@ MonoBehaviour:
   fallbackGoalBehaviour: {fileID: 0}
   repathInterval: 0.4
   minMoveToRepath: 0.25
+--- !u!114 &6557072432050496802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291822611258787927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2e477f7563e87d42beeaf79d1c02795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 200
+  onDeathMessage: Structure destroyed!
+  hp: 20
+--- !u!114 &7516218939583949706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291822611258787927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31e89a0891a32454891d543cfef31b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  localOffset: {x: 0, y: 2, z: 0}
+  sizeWorldUnits: {x: 1.6, y: 0.18}
+  backColor: {r: 0, g: 0, b: 0, a: 0.65}
+  fullColor: {r: 0.2, g: 0.85, b: 0.2, a: 0.95}
+  emptyColor: {r: 0.9, g: 0.15, b: 0.1, a: 0.95}
+  hideWhenFull: 1
+  billboardToCamera: 1

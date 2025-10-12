@@ -13,16 +13,16 @@ GameObject:
   - component: {fileID: 22848965904036366}
   - component: {fileID: 3812813595190715428}
   - component: {fileID: 3504470131129180059}
-  - component: {fileID: 3777382147989521697}
   - component: {fileID: 602944184456036403}
   - component: {fileID: 8990771526667805894}
   - component: {fileID: 6145897660413489637}
-  - component: {fileID: 2946244889692127070}
   - component: {fileID: 4904336254758493212}
   - component: {fileID: 4208859406890805440}
   - component: {fileID: 50583890901584694}
   - component: {fileID: 2082134228365385464}
   - component: {fileID: 2765800380325641943}
+  - component: {fileID: 7980669660051783623}
+  - component: {fileID: 6978838164795980126}
   m_Layer: 6
   m_Name: Enemy_ToxinSpitter
   m_TagString: Enemy
@@ -113,7 +113,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -148,26 +148,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!114 &3777382147989521697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1291822611258787927}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 937129d3de5a3ca4f81589cfcb4a5634, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHP: 12
-  resist: 0.15
-  onDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &602944184456036403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,22 +196,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   archetype: {fileID: 11400000, guid: 414845562c78b90498f66954fb2a9d91, type: 2}
   HP: 0
---- !u!114 &2946244889692127070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1291822611258787927}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073fd6450a8c82b489ad46e039c6201e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 8
-  attacksPerSecond: 0.66
-  damage: 2
-  projectilePrefab: {fileID: 2738121496026479225, guid: 5d25df3a13d68c84ba93c0bf604a043d, type: 3}
 --- !u!114 &4904336254758493212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,7 +228,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 8
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &50583890901584694
 MonoBehaviour:
@@ -281,6 +245,7 @@ MonoBehaviour:
   interestMask:
     serializedVersion: 2
     m_Bits: 256
+  pruneInterval: 0.25
 --- !u!114 &2082134228365385464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,3 +281,38 @@ MonoBehaviour:
   fallbackGoalBehaviour: {fileID: 0}
   repathInterval: 0.4
   minMoveToRepath: 0.25
+--- !u!114 &7980669660051783623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291822611258787927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2e477f7563e87d42beeaf79d1c02795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 200
+  onDeathMessage: Structure destroyed!
+  hp: 20
+--- !u!114 &6978838164795980126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291822611258787927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31e89a0891a32454891d543cfef31b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  localOffset: {x: 0, y: 2, z: 0}
+  sizeWorldUnits: {x: 1.6, y: 0.18}
+  backColor: {r: 0, g: 0, b: 0, a: 0.65}
+  fullColor: {r: 0.2, g: 0.85, b: 0.2, a: 0.95}
+  emptyColor: {r: 0.9, g: 0.15, b: 0.1, a: 0.95}
+  hideWhenFull: 1
+  billboardToCamera: 1

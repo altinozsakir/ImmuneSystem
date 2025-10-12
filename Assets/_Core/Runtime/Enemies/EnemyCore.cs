@@ -11,14 +11,14 @@ namespace Core.Enemies
         [HideInInspector] public float HP;
 
         private NavMeshAgent agent;
-        private EnemyMoverNavmesh mover;   // your existing mover
+        private EnemyBrain mover;   // your existing mover
         private EnemyMelee melee;
         private EnemyRangedSpitter spitter;
 
         void Awake()
         {
             agent = GetComponent<NavMeshAgent>();
-            mover = GetComponent<EnemyMoverNavmesh>();
+            mover = GetComponent<EnemyBrain>();
             melee = GetComponent<EnemyMelee>();
             spitter = GetComponent<EnemyRangedSpitter>();
 
@@ -42,7 +42,7 @@ namespace Core.Enemies
             agent.autoBraking = false;
 
             // feed base speed to your mover
-            if (mover) typeof(EnemyMoverNavmesh)
+            if (mover) typeof(EnemyBrain)
                 .GetField("baseSpeed", System.Reflection.BindingFlags.NonPublic|System.Reflection.BindingFlags.Instance)
                 ?.SetValue(mover, archetype.baseSpeed);
 
