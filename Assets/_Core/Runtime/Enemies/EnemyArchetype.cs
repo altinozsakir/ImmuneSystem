@@ -33,5 +33,10 @@ namespace Core.Enemies
         public Vector3 scale = Vector3.one;    // quick visual size
         public GameObject visualPrefab;        // optional child mesh/VFX
         public AudioClip hitSfx, deathSfx;
+
+
+        [Tooltip("Animator Override Controller that swaps Idle/Walk/Attack clips.")]
+        public AnimatorOverrideController animatorOverride;
+
     }
 }

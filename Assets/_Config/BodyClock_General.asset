@@ -10,38 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e87a597daaf22ea4399e9e3c1895530f, type: 3}
-  m_Name: BodyClock_Default
+  m_Name: BodyClock_General
   m_EditorClassIdentifier: 
   phases:
+  - phase: 0
+    durationSec: 30
+    phaseColor: {r: 0.25, g: 0.35, b: 0.8, a: 1}
+    atpIncomeMult: 0.9
+    enemySpeedMult: 0.9
+    repairCostMult: 0.9
+    startPlanningOnEnter: 1
+    planningDurationSec: 7
   - phase: 1
     durationSec: 40
     phaseColor: {r: 0.35, g: 0.8, b: 0.5, a: 1}
     atpIncomeMult: 1.2
-    enemySpeedMult: 1.1
+    enemySpeedMult: 1
     repairCostMult: 1
     startPlanningOnEnter: 0
-    planningDurationSec: 2
+    planningDurationSec: 0
   - phase: 2
     durationSec: 30
     phaseColor: {r: 0.95, g: 0.7, b: 0.2, a: 1}
-    atpIncomeMult: 1.4
-    enemySpeedMult: 1
-    repairCostMult: 1
+    atpIncomeMult: 1.15
+    enemySpeedMult: 1.05
+    repairCostMult: 0.95
     startPlanningOnEnter: 1
     planningDurationSec: 7
   - phase: 3
     durationSec: 40
     phaseColor: {r: 0.9, g: 0.4, b: 0.35, a: 1}
     atpIncomeMult: 1
-    enemySpeedMult: 1
+    enemySpeedMult: 1.1
     repairCostMult: 1
     startPlanningOnEnter: 0
-    planningDurationSec: 2.0054
-  - phase: 0
-    durationSec: 30
-    phaseColor: {r: 0.25, g: 0.35, b: 0.8, a: 1}
-    atpIncomeMult: 0.8
-    enemySpeedMult: 0.75
-    repairCostMult: 0.8
-    startPlanningOnEnter: 1
-    planningDurationSec: 7
+    planningDurationSec: 0

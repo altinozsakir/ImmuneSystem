@@ -13,6 +13,12 @@ public class TestPawnController : MonoBehaviour
     public float dashForce = 18f;
     public float dashCooldown = 0.35f;
 
+    
+    public float interactRange = 3.0f;
+    public LayerMask buildSiteMask;
+    public int repairPerPress = 10;
+
+
 
     Rigidbody _rb; Vector3 _moveDir; bool _dashRequested; float _nextDashTime;
 

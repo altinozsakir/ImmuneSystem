@@ -8,6 +8,7 @@ namespace Core.TimeSystem
     {
         public float atpIncome, enemySpeed, repairCost;
     }
+
     public class BodyClockDirector : MonoBehaviour
     {
         public BodyClockConfig config;
@@ -15,6 +16,7 @@ namespace Core.TimeSystem
 
 
         // Events (UI & systems subscribe)
+        // Other systems can use this events 
         public event Action<BodyPhase> OnPhaseChanged; // phase label/color
         public event Action<PhaseMultipliers> OnMultipliersChanged; // hooks
         public event Action<bool> OnPlanningWindow; // true = start, false = end
@@ -104,7 +106,7 @@ namespace Core.TimeSystem
             IsPlanningActive = true;
             PlanningWindowDurationUnscaled = durationSec;
             PlanningWindowElapsedUnscaled = 0f;
-            _tsHandle = TimeScaleService.Push(0.35f);
+            _tsHandle = TimeScaleService.Push(0f);
             OnPlanningWindow?.Invoke(true);
         }
         void EndPlanningWindow()

@@ -13,10 +13,13 @@ namespace Core.TimeSystem
         public BodyPhase phase;
         [Min(1f)] public float durationSec;
         public Color phaseColor;
+        
+        
         [Header("Multipliers (1 = neutral)")]
         [Min(0f)] public float atpIncomeMult; // e.g., Morning 1.2
         [Min(0f)] public float enemySpeedMult; // e.g., Evening 1.1
         [Min(0f)] public float repairCostMult; // e.g., 0.8 means 20% cheaper repairs
+    
         [Header("Planning Window on Phase Enter")]
         public bool startPlanningOnEnter; // Sleep & PostMeal
         [Range(2f, 20f)] public float planningDurationSec; // 6–8s

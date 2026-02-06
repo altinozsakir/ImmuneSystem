@@ -20,10 +20,30 @@ MonoBehaviour:
       cadence: 0.9
       count: 60
       laneIndex: 0
-      enemyPrefab: {fileID: 0}
+      enemyPrefab: {fileID: 6875487595201442330, guid: 487c7ce2ff7d8b543a16484d968a39b5, type: 3}
       elitePrefab: {fileID: 2591347859904394286, guid: b9e17e4b6426bfd4f8db6514ac311239, type: 3}
       eliteChance: 0
-  - phase: 2
-    waves: []
-  - phase: 3
-    waves: []
+    - name: 
+      startAfter: 2
+      cadence: 0.9
+      count: 60
+      laneIndex: 3
+      enemyPrefab: {fileID: 6875487595201442330, guid: 487c7ce2ff7d8b543a16484d968a39b5, type: 3}
+      elitePrefab: {fileID: 2591347859904394286, guid: b9e17e4b6426bfd4f8db6514ac311239, type: 3}
+      eliteChance: 0
+    - name: 
+      startAfter: 2
+      cadence: 0.9
+      count: 60
+      laneIndex: 1
+      enemyPrefab: {fileID: 6875487595201442330, guid: 487c7ce2ff7d8b543a16484d968a39b5, type: 3}
+      elitePrefab: {fileID: 2591347859904394286, guid: b9e17e4b6426bfd4f8db6514ac311239, type: 3}
+      eliteChance: 0
+    - name: 
+      startAfter: 2
+      cadence: 0.9
+      count: 60
+      laneIndex: 2
+      enemyPrefab: {fileID: 6875487595201442330, guid: 487c7ce2ff7d8b543a16484d968a39b5, type: 3}
+      elitePrefab: {fileID: 2591347859904394286, guid: b9e17e4b6426bfd4f8db6514ac311239, type: 3}
+      eliteChance: 0

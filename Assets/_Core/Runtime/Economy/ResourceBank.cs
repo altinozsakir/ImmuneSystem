@@ -11,15 +11,18 @@ namespace Core.Economy
     {
         public BodyClockDirector clock; // phase multipliers
         [Header("Amounts")]
+        
+        [SerializeField]
         public float atp = 0f;
+
+        [SerializeField]
         public int cytokines = 0;
         public delegate void ExternalMultiplierRequestHandler(ref float multiplier);
         public event ExternalMultiplierRequestHandler OnExternalMultiplierRequest;
 
         [Header("ATP Tick")]
-        [Min(0f)] public float atpPerTick = 15f; // base value per tick
-        [Min(0.1f)] public float tickIntervalSec = 6f; // unscaled seconds
-
+        [Min(0f)] public float atpPerTick = 10f; // base value per tick
+        [Min(0.1f)] public float tickIntervalSec = 2f; // unscaled seconds
 
         public event Action OnChanged; // HUD can subscribe
 
@@ -32,7 +35,7 @@ namespace Core.Economy
         {
             if (!clock) clock = FindAnyObjectByType<BodyClockDirector>();
         }
-        void OnMultChanged(Core.TimeSystem.PhaseMultipliers m)
+        void OnMultChanged(PhaseMultipliers m)
         {
             _atpMult = Mathf.Max(0f, m.atpIncome);
         }
@@ -69,7 +72,6 @@ namespace Core.Economy
             }
         }
 
-
         public void GainATP(float amount)
         {
             atp += Mathf.Max(0f, amount);
@@ -78,13 +80,13 @@ namespace Core.Economy
         public bool SpendATP(float amount)
         {
             if (atp < amount) return false;
-            atp -= amount; OnChanged?.Invoke(); return true;
+            atp -= amount; 
+            OnChanged?.Invoke(); 
+            return true;
         }
 
 
         public void AddCytokines(int amount) { cytokines += Mathf.Max(0, amount); OnChanged?.Invoke(); }
-
-
 
     }
 }

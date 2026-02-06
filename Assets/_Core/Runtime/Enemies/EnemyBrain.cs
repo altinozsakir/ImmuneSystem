@@ -36,7 +36,7 @@ namespace Core.Enemies
             // sane anti-jitter defaults
             agent.autoBraking = false;
             agent.updateRotation = false;
-            agent.stoppingDistance = Mathf.Max(agent.stoppingDistance, combat.GetComponentInParent<EnemyCore>().archetype.attackRange * 0.85f);
+            agent.stoppingDistance = Mathf.Max(agent.stoppingDistance, combat.attackRange * 0.85f);
 
             targeting.OnTargetChanged += OnTargetChanged;
         }

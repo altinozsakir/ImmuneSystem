@@ -6,7 +6,7 @@ using Core.Enemies; // Add this if EnemySpawner is in Core.Spawning namespace
 
 namespace Core.WavesRuntime
 {
-    public class EncounterDirector : MonoBehaviour
+    public class WaveDirector : MonoBehaviour
     {
         [Header("Refs")]
         public BodyClockDirector clock;
@@ -87,7 +87,7 @@ namespace Core.WavesRuntime
                 // spawn (prefab override)
 
 
-                spawner.SpawnOne();         // fallback to its default
+                spawner.SpawnOne(prefab);         // fallback to its default
 
 
                 if (w.cadence > 0f) yield return new WaitForSeconds(w.cadence);

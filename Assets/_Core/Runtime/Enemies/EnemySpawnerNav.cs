@@ -11,19 +11,14 @@ namespace Core.Enemies
     {
         [Header("Assign in Inspector")]   // Nav variant or unified prefab
         [SerializeField] private Transform spawnPoint;
-        [SerializeField] private Transform laneGoal;        // <- drag Goal_LaneX here
-        [SerializeField] private float interval = 1.6f;
-        [SerializeField] private int count = 8;
+        [SerializeField] private Transform laneGoal;     
         [Header("Optional")]
         [SerializeField] private float spawnJitterRadius = 0.15f;
 
-        [SerializeField] private GameObject[] enemyPrefabs; // size 4
-        int nextIndex;
-        public void SpawnOne()
+
+        public void SpawnOne(GameObject enemyPrefab)
         {
-            var enemyPrefab = (enemyPrefabs != null && enemyPrefabs.Length > 0)
-                ? enemyPrefabs[nextIndex++ % enemyPrefabs.Length]
-                : null;
+
             var pos = spawnPoint ? spawnPoint.position : transform.position;
             pos = Jitter(pos, spawnJitterRadius);
 

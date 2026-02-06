@@ -17,15 +17,19 @@ namespace Core.Combat
 
         NavMeshAgent agent;
 
-        EnemyCore EnemyCore;
-        float cd;
 
+        [SerializeField] public float attackRange;
+        [SerializeField] public float attacksPerSecond;
+        [SerializeField] public float contactDamage;
+        float cd;
+        private EnemyAnimatorDriver _anim;
+        private float _cooldown;
         void Awake()
         {
             agent = GetComponent<NavMeshAgent>();
-            EnemyCore = GetComponent<EnemyCore>();
+            _anim = GetComponent<EnemyAnimatorDriver>();
             agent.autoBraking = false;
-            agent.stoppingDistance = Mathf.Max(agent.stoppingDistance, EnemyCore.archetype.attackRange * 0.85f);
+            agent.stoppingDistance = Mathf.Max(agent.stoppingDistance, attackRange * 0.85f);
             goal = fallbackGoalBehaviour as IHittable;
         }
 
@@ -39,10 +43,10 @@ namespace Core.Combat
 
 
             float dist = DistanceTo(tgt);
-            bool inRange = dist <= EnemyCore.archetype.attackRange + 0.02f;
+            bool inRange = dist <= attackRange + 0.02f;
             agent.isStopped = inRange;
 
-            if (dist < EnemyCore.archetype.attackRange * 1.5f)
+            if (dist < attackRange * 1.5f)
             {
                 var dir = tgt.transform.position - transform.position; dir.y = 0;
                 if (dir.sqrMagnitude > 0.0001f)
@@ -52,8 +56,9 @@ namespace Core.Combat
             cd -= Time.deltaTime;
             if (inRange && cd <= 0f)
             {
-                tgt.TakeDamage(EnemyCore.archetype.contactDamage);
-                cd = 1f / Mathf.Max(0.01f, EnemyCore.archetype.attacksPerSecond);
+                _anim?.PlayAttack();
+                tgt.TakeDamage(contactDamage);
+                cd = 1f / Mathf.Max(0.01f, attacksPerSecond);
             }
         }
 
