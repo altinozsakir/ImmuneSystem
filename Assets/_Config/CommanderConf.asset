@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cff87bc671f02e4ab5db4badaf7c732, type: 3}
+  m_Name: CommanderConf
+  m_EditorClassIdentifier: 
+  moveSpeed: 6
+  dashSpeed: 14
+  dashDuration: 0.18
+  dashCooldown: 6
+  attackCooldown: 0.35
+  attackRange: 2.7
+  attackWindup: 0.12
+  attackRecover: 0.18
+  attackDamage: 10
+  damageableMask:
+    serializedVersion: 2
+    m_Bits: 64
+  repairCooldown: 0.25
+  buildCooldown: 3
+  buildMaxRange: 8
+  gridCellSize: 1
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 512
+  blockingMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  blockingCheckRadius: 0.45
+  defaultBuildable: {fileID: 11400000, guid: 465a5e1c962be81488fb64929a41f898, type: 2}
+  ghostValidMaterial: {fileID: 2100000, guid: b285389d2d6ccc444b3a10977b3e37a0, type: 2}
+  ghostInvalidMaterial: {fileID: 2100000, guid: 148e45b43c1f63e489c9027b731f2486, type: 2}

@@ -15,6 +15,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Pointer",
+                    "type": "Value",
+                    "id": "a4685f61-830b-40fd-830d-90ab8485b6a4",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Dash",
                     "type": "Button",
                     "id": "712f3ee9-f20d-4cbc-8917-b1428d6f57e9",
@@ -179,6 +188,17 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "82150fa5-9d9c-44ae-9f1e-8a2bc4797103",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pointer",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",

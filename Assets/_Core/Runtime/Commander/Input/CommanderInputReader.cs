@@ -9,43 +9,55 @@ namespace Core.Commander.Input
     public class CommanderInputReader : MonoBehaviour
     {
         
-        private InputActionReference move;
-        private InputActionReference dash;
+        [SerializeField] private InputActionReference move;
+        [SerializeField] private InputActionReference dash;
+        [SerializeField] private InputActionReference attack;
+        [SerializeField] private InputActionReference build;
+        [SerializeField] private InputActionReference confirm;
+        [SerializeField] private InputActionReference cancel;
+        [SerializeField] private InputActionReference pointer;
 
         private Vector2 moveValue;
+        private Vector2 pointerValue;
         private bool dashPressedEdge;
+        private bool attackPressedEdge;
+        private bool buildPressedEdge;
+        private bool confirmPressedEdge;
+        private bool cancelPressedEdge;
 
         private void OnEnable()
         {
-            if(move != null)
-            {
-                move.action.Enable();
-                move.action.performed += OnMove;
-                move.action.canceled += OnMove;
-            }
+            Hook(move, OnMove);
+            Hook(dash, OnDashPerformed);
+            Hook(attack, OnAttackPerformed);
 
-            if(dash != null)
+            Hook(build, OnBuildPerformed);
+            Hook(confirm, OnConfirmPerformed);
+            Hook(cancel, OnCancelPerformed);
+
+            if (pointer != null)
             {
-                dash.action.Enable();
-                dash.action.performed += OnDashPerformed;
+                pointer.action.Enable();
+                pointer.action.performed += OnPointer;
+                pointer.action.canceled += OnPointer;
             }
         }
 
         private void OnDisable()
         {
-            if(move!= null)
-            {
-                
-                move.action.performed -= OnMove;
-                move.action.canceled -= OnMove;
-                move.action.Disable();
-            }
+            Unhook(move, OnMove);
+            Unhook(dash, OnDashPerformed);
+            Unhook(attack, OnAttackPerformed);
 
-            if(dash != null)
+            Unhook(build, OnBuildPerformed);
+            Unhook(confirm, OnConfirmPerformed);
+            Unhook(cancel, OnCancelPerformed);
+
+            if (pointer != null)
             {
-                dash.action.performed -= OnDashPerformed;
-                dash.action.Disable();
-                
+                pointer.action.performed -= OnPointer;
+                pointer.action.canceled -= OnPointer;
+                pointer.action.Disable();
             }
 
 
@@ -60,11 +72,42 @@ namespace Core.Commander.Input
             dashPressedEdge = true;
         }
 
+        private void OnAttackPerformed(InputAction.CallbackContext ctx)
+        {
+            attackPressedEdge = true;
+        }
+        private void OnPointer(InputAction.CallbackContext ctx) => pointerValue = ctx.ReadValue<Vector2>();
+
+        private void OnBuildPerformed(InputAction.CallbackContext ctx) { if (ctx.performed) buildPressedEdge = true; }
+        private void OnConfirmPerformed(InputAction.CallbackContext ctx) { if (ctx.performed) confirmPressedEdge = true; }
+        private void OnCancelPerformed(InputAction.CallbackContext ctx) { if (ctx.performed) cancelPressedEdge = true; }
+        private static void Unhook(InputActionReference a, System.Action<InputAction.CallbackContext> cb)
+        {
+            if (a == null) return;
+            a.action.performed -= cb;
+            a.action.canceled -= cb;
+            a.action.Disable();
+        }
+
+        private static void Hook(InputActionReference a, System.Action<InputAction.CallbackContext> cb)
+        {
+            if (a == null) return;
+            a.action.Enable();
+            a.action.performed += cb;
+            a.action.canceled += cb;
+        }
+
 
         public CommanderInputSnapshot ConsumeSnapshot()
         {
-            var snap = new CommanderInputSnapshot(moveValue, dashPressedEdge);
-            dashPressedEdge = false;
+            var snap = new CommanderInputSnapshot(moveValue, 
+            dashPressedEdge, 
+            attackPressedEdge,
+            buildPressedEdge,
+            confirmPressedEdge,
+            cancelPressedEdge,
+            pointerValue);
+            dashPressedEdge = attackPressedEdge = buildPressedEdge = confirmPressedEdge = cancelPressedEdge = false;
             return snap;
         }
     }

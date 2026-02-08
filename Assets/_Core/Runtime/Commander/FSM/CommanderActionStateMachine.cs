@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Core.Commander.FSM
 {
     public class CommanderActionStateMachine
@@ -29,6 +31,7 @@ namespace Core.Commander.FSM
 
         public bool TryStart(ref CommanderContext ctx, ICommanderAction next, bool allowInterrupt=true)
         {
+
             if(next==null) return false;
             if(!next.CanStart(in ctx)) return false;
 
@@ -43,7 +46,9 @@ namespace Core.Commander.FSM
             }
             current = next;
             current.Start(ref ctx);
+            
             return true;
+            
 
         }
 
