@@ -528,7 +528,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &78529212
 Transform:
   m_ObjectHideFlags: 0
@@ -2365,7 +2365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &423163813
 Transform:
   m_ObjectHideFlags: 0
@@ -4452,7 +4452,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &738080890
 Transform:
   m_ObjectHideFlags: 0
@@ -6298,7 +6298,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1117812591
 Transform:
   m_ObjectHideFlags: 0
@@ -9231,7 +9231,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1588481350
 Transform:
   m_ObjectHideFlags: 0
@@ -9262,6 +9262,63 @@ MonoBehaviour:
   spawnPoint: {fileID: 1588481350}
   laneGoal: {fileID: 1362906731}
   spawnJitterRadius: 5
+--- !u!1001 &1589542030
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1613083727110668053, guid: 6c26e0ed12c7a0a458111665a46ae70e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.435
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613083727110668053, guid: 6c26e0ed12c7a0a458111665a46ae70e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613083727110668053, guid: 6c26e0ed12c7a0a458111665a46ae70e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.191
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613083727110668053, guid: 6c26e0ed12c7a0a458111665a46ae70e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613083727110668053, guid: 6c26e0ed12c7a0a458111665a46ae70e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613083727110668053, guid: 6c26e0ed12c7a0a458111665a46ae70e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613083727110668053, guid: 6c26e0ed12c7a0a458111665a46ae70e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613083727110668053, guid: 6c26e0ed12c7a0a458111665a46ae70e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613083727110668053, guid: 6c26e0ed12c7a0a458111665a46ae70e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613083727110668053, guid: 6c26e0ed12c7a0a458111665a46ae70e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6875487595201442330, guid: 6c26e0ed12c7a0a458111665a46ae70e, type: 3}
+      propertyPath: m_Name
+      value: virus_basemesh_new
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6c26e0ed12c7a0a458111665a46ae70e, type: 3}
 --- !u!1 &1592148203
 GameObject:
   m_ObjectHideFlags: 0
@@ -11216,7 +11273,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1865532206
 Transform:
   m_ObjectHideFlags: 0
@@ -12633,10 +12690,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1299653243866019113, guid: efaa0355c31bbd747b8e88d8db417f96, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3123915920802444490, guid: efaa0355c31bbd747b8e88d8db417f96, type: 3}
       propertyPath: m_LocalPosition.x
       value: -34.239998
@@ -12677,21 +12730,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6789996639598261197, guid: efaa0355c31bbd747b8e88d8db417f96, type: 3}
-      propertyPath: hideWhenFull
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6789996639598261197, guid: efaa0355c31bbd747b8e88d8db417f96, type: 3}
-      propertyPath: billboardToCamera
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8439080467536771386, guid: efaa0355c31bbd747b8e88d8db417f96, type: 3}
       propertyPath: m_Name
       value: Lymph HQ
-      objectReference: {fileID: 0}
-    - target: {fileID: 8439080467536771386, guid: efaa0355c31bbd747b8e88d8db417f96, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13646,7 +13687,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   move: {fileID: 121528806709821711, guid: 3728481d579b6144d88ca9fbece3d451, type: 3}
   dash: {fileID: -7684550499396369572, guid: 3728481d579b6144d88ca9fbece3d451, type: 3}
-  attack: {fileID: -2904587227548340912, guid: 3728481d579b6144d88ca9fbece3d451, type: 3}
+  attack: {fileID: -5613857167830423795, guid: 3728481d579b6144d88ca9fbece3d451, type: 3}
   build: {fileID: -7761360476915958536, guid: 3728481d579b6144d88ca9fbece3d451, type: 3}
   confirm: {fileID: -5613857167830423795, guid: 3728481d579b6144d88ca9fbece3d451, type: 3}
   cancel: {fileID: -2904587227548340912, guid: 3728481d579b6144d88ca9fbece3d451, type: 3}
@@ -13702,3 +13743,4 @@ SceneRoots:
   - {fileID: 2015626052}
   - {fileID: 242518028}
   - {fileID: 944133394}
+  - {fileID: 1589542030}

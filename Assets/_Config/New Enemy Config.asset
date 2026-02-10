@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2e9fe3fd95c686438009edabe439cca, type: 3}
+  m_Name: New Enemy Config
+  m_EditorClassIdentifier: 
+  moveSpeed: 3.5
+  stoppingDistance: 1.2
+  aggroRadius: 10
+  attackRange: 1.4
+  attackWindup: 0.12
+  attackRecover: 0.18
+  attackDamage: 5
+  attackCooldown: 0.6
+  damageableMask:
+    serializedVersion: 2
+    m_Bits: 256

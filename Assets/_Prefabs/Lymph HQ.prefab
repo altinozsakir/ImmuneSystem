@@ -236,6 +236,7 @@ GameObject:
   - component: {fileID: 3672121201231173023}
   - component: {fileID: 224188169328016516}
   - component: {fileID: 6789996639598261197}
+  - component: {fileID: 1025165160625522310}
   m_Layer: 8
   m_Name: Lymph HQ
   m_TagString: Structure
@@ -348,7 +349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 200.4
   onDeathMessage: Structure destroyed!
-  hp: -1580
+  hp: -332355
 --- !u!54 &3672121201231173023
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -383,7 +384,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8439080467536771386}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c409e2b28d044c544bf45b6f178f9ac2, type: 3}
   m_Name: 
@@ -399,7 +400,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8439080467536771386}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31e89a0891a32454891d543cfef31b16, type: 3}
   m_Name: 
@@ -410,5 +411,18 @@ MonoBehaviour:
   backColor: {r: 0, g: 0, b: 0, a: 0.65}
   fullColor: {r: 0.2, g: 0.85, b: 0.2, a: 0.95}
   emptyColor: {r: 0.9, g: 0.15, b: 0.1, a: 0.95}
-  hideWhenFull: 1
-  billboardToCamera: 1
+  hideWhenFull: 0
+  billboardToCamera: 0
+--- !u!114 &1025165160625522310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8439080467536771386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f431285a0327bee49b9d96f0a55d3286, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 50

@@ -104,8 +104,8 @@ namespace Core.Commander.Input
             dashPressedEdge, 
             attackPressedEdge,
             buildPressedEdge,
-            confirmPressedEdge,
             cancelPressedEdge,
+            confirmPressedEdge,
             pointerValue);
             dashPressedEdge = attackPressedEdge = buildPressedEdge = confirmPressedEdge = cancelPressedEdge = false;
             return snap;
