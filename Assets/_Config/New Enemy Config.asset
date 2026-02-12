@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2e9fe3fd95c686438009edabe439cca, type: 3}
   m_Name: New Enemy Config
   m_EditorClassIdentifier: 
-  moveSpeed: 3.5
+  moveSpeed: 16
   stoppingDistance: 1.2
   aggroRadius: 10
   attackRange: 1.4

@@ -39,8 +39,6 @@ namespace Core.MetaHooks
             int add = amount;
 
             // Optional bonus for elites (component is just a tag)
-            if (TryGetComponent<Core.Enemies.EnemyElite>(out _))
-                add += extraIfElite;
 
             if (add > 0) inflammation.Add(add);
         }

@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75d119e638e77ba43945240336db0e76, type: 3}
+  m_Name: New Wave Config
+  m_EditorClassIdentifier: 
+  waves:
+  - name: Wave1
+    preDelay: 14
+    groups:
+    - enemyPrefab: {fileID: 6875487595201442330, guid: 6c26e0ed12c7a0a458111665a46ae70e, type: 3}
+      count: 15
+      interval: 1
+      lane: Lane1
+    - enemyPrefab: {fileID: 6875487595201442330, guid: 6c26e0ed12c7a0a458111665a46ae70e, type: 3}
+      count: 40
+      interval: 3
+      lane: Lane2
+    - enemyPrefab: {fileID: 6875487595201442330, guid: 6c26e0ed12c7a0a458111665a46ae70e, type: 3}
+      count: 13
+      interval: 3
+      lane: Lane3
+    postDelay: 12
+  - name: Wave2
+    preDelay: 14
+    groups:
+    - enemyPrefab: {fileID: 6875487595201442330, guid: 6c26e0ed12c7a0a458111665a46ae70e, type: 3}
+      count: 15
+      interval: 1
+      lane: Lane1
+    - enemyPrefab: {fileID: 6875487595201442330, guid: 6c26e0ed12c7a0a458111665a46ae70e, type: 3}
+      count: 40
+      interval: 3
+      lane: Lane2
+    - enemyPrefab: {fileID: 6875487595201442330, guid: 6c26e0ed12c7a0a458111665a46ae70e, type: 3}
+      count: 13
+      interval: 3
+      lane: Lane3
+    postDelay: 12

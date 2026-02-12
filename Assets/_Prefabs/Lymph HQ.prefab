@@ -232,10 +232,7 @@ GameObject:
   - component: {fileID: 1697722550648340680}
   - component: {fileID: 5635528502992104952}
   - component: {fileID: 4983109064843317734}
-  - component: {fileID: 1299653243866019113}
   - component: {fileID: 3672121201231173023}
-  - component: {fileID: 224188169328016516}
-  - component: {fileID: 6789996639598261197}
   - component: {fileID: 1025165160625522310}
   m_Layer: 8
   m_Name: Lymph HQ
@@ -335,21 +332,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1299653243866019113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8439080467536771386}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2e477f7563e87d42beeaf79d1c02795, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHP: 200.4
-  onDeathMessage: Structure destroyed!
-  hp: -332355
 --- !u!54 &3672121201231173023
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -377,42 +359,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &224188169328016516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8439080467536771386}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c409e2b28d044c544bf45b6f178f9ac2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team: 1
-  threatClass: 0
-  staticPriority: 100
-  IsAlive: 1
---- !u!114 &6789996639598261197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8439080467536771386}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31e89a0891a32454891d543cfef31b16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  localOffset: {x: 0, y: 2, z: 0}
-  sizeWorldUnits: {x: 1.6, y: 0.18}
-  backColor: {r: 0, g: 0, b: 0, a: 0.65}
-  fullColor: {r: 0.2, g: 0.85, b: 0.2, a: 0.95}
-  emptyColor: {r: 0.9, g: 0.15, b: 0.1, a: 0.95}
-  hideWhenFull: 0
-  billboardToCamera: 0
 --- !u!114 &1025165160625522310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,4 +371,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f431285a0327bee49b9d96f0a55d3286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 50
+  hp: 1000

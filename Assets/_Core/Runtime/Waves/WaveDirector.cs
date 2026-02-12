@@ -1,96 +1,139 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using Core.TimeSystem;   // BodyClockDirector, BodyPhase
-using Core.Waves;
-using Core.Enemies; // Add this if EnemySpawner is in Core.Spawning namespace
 
-namespace Core.WavesRuntime
+namespace Core.Waves
 {
     public class WaveDirector : MonoBehaviour
     {
         [Header("Refs")]
-        public BodyClockDirector clock;
-        [Tooltip("Lane spawners (index by Wave.laneIndex)")]
-        public EnemySpawnerNav[] lanes;
-        public WaveList waveList;
+        [SerializeField] private WaveConfig config;
+        [SerializeField] private EnemySpawner spawner;
 
-        [Header("Debug")]
-        public bool logStarts = true;
+        [Header("Runtime")]
+        [SerializeField] private bool autoStart = true;
+        [SerializeField] private bool waitUntilAllDeadBeforeNextWave = true;
 
-        Coroutine _phaseRoutine;
+        private readonly HashSet<GameObject> alive = new();
 
-        void Awake()
+        private Coroutine routine;
+        private int currentWaveIndex = -1;
+
+        private void Awake()
         {
-            if (!clock) clock = FindAnyObjectByType<BodyClockDirector>();
+            if (!spawner) spawner = FindFirstObjectByType<EnemySpawner>();
         }
 
-        void OnEnable()
+        private void Start()
         {
-            if (clock) clock.OnPhaseChanged += OnPhaseChanged;
-        }
-        void OnDisable()
-        {
-            if (clock) clock.OnPhaseChanged -= OnPhaseChanged;
+            if (autoStart)
+                StartWaves();
         }
 
-        void Start()
+        public void StartWaves()
         {
-            // start current phase if director enabled at runtime
-            OnPhaseChanged(clock ? clock.CurrentPhase : BodyPhase.Morning);
+            if (routine != null) StopCoroutine(routine);
+            routine = StartCoroutine(RunAllWaves());
         }
 
-        void OnPhaseChanged(BodyPhase phase)
+        public void StopWaves()
         {
-            if (_phaseRoutine != null) StopCoroutine(_phaseRoutine);
-            if (!waveList) return;
+            if (routine != null) StopCoroutine(routine);
+            routine = null;
+        }
 
-            var block = waveList.Get(phase);
-            if (block == null || block.waves == null || block.waves.Count == 0)
+        public int AliveCount => alive.Count;
+        public int CurrentWaveIndex => currentWaveIndex;
+
+        private IEnumerator RunAllWaves()
+        {
+            if (!config || config.waves == null || config.waves.Count == 0)
             {
-                if (logStarts) Debug.Log($"[Encounter] Phase {phase}: no waves");
-                return;
+                Debug.LogError("[WaveDirector] Missing WaveConfig or waves empty.");
+                yield break;
             }
 
-            _phaseRoutine = StartCoroutine(RunPhase(block));
-        }
-
-        IEnumerator RunPhase(PhaseBlock block)
-        {
-            if (logStarts) Debug.Log($"[Encounter] Start {block.phase} ({block.waves.Count} waves)");
-            // Launch each wave as its own coroutine so overlaps are allowed
-            foreach (var w in block.waves)
-                StartCoroutine(RunWave(w));
-            yield break;
-        }
-
-        IEnumerator RunWave(Wave w)
-        {
-            if (lanes == null || lanes.Length == 0) yield break;
-            int idx = Mathf.Clamp(w.laneIndex, 0, lanes.Length - 1);
-            var spawner = lanes[idx];
-            if (!spawner) yield break;
-
-            // wait for start offset (scaled time → slowed during planning windows)
-            if (w.startAfter > 0f) yield return new WaitForSeconds(w.startAfter);
-
-            if (logStarts) Debug.Log($"[Encounter] Wave \"{w.name}\" lane {idx} x{w.count} every {w.cadence:0.##}s");
-
-            for (int i = 0; i < w.count; i++)
+            if (!spawner)
             {
-                // decide prefab (elite roll)
-                GameObject prefab = w.enemyPrefab;
-                var a = Random.value;
-                Debug.Log(a);
-                if (w.elitePrefab && w.eliteChance > 0f && a < w.eliteChance)
-                    prefab = w.elitePrefab;
+                Debug.LogError("[WaveDirector] Missing EnemySpawner reference.");
+                yield break;
+            }
 
-                // spawn (prefab override)
+            for (int w = 0; w < config.waves.Count; w++)
+            {
+                currentWaveIndex = w;
+                var wave = config.waves[w];
 
+                if (wave.preDelay > 0f)
+                    yield return new WaitForSeconds(wave.preDelay);
 
-                spawner.SpawnOne(prefab);         // fallback to its default
+                // Spawn each group sequentially (simple, deterministic)
+                for (int g = 0; g < wave.groups.Count; g++)
+                    yield return SpawnGroupCoroutine(wave.groups[g]);
 
+                // Wait for all dead (optional)
+                if (waitUntilAllDeadBeforeNextWave)
+                {
+                    while (alive.Count > 0)
+                        yield return null;
+                }
 
-                if (w.cadence > 0f) yield return new WaitForSeconds(w.cadence);
+                if (wave.postDelay > 0f)
+                    yield return new WaitForSeconds(wave.postDelay);
+            }
+
+            routine = null;
+            Debug.Log("[WaveDirector] Completed all waves.");
+        }
+
+        private IEnumerator SpawnGroupCoroutine(WaveConfig.SpawnGroup group)
+        {
+            if (group.enemyPrefab == null)
+            {
+                Debug.LogWarning("[WaveDirector] SpawnGroup missing prefab.");
+                yield break;
+            }
+
+            for (int i = 0; i < group.count; i++)
+            {
+                var go = spawner.Spawn(group.enemyPrefab, group.lane);
+                if (go != null)
+                {
+                    alive.Add(go);
+
+                    // Track destruction automatically
+                    var tracker = go.AddComponent<AliveTracker>();
+                    tracker.Init(this, go);
+                }
+
+                yield return new WaitForSeconds(group.interval);
+            }
+        }
+
+        private void NotifyDead(GameObject go)
+        {
+            if (go != null) alive.Remove(go);
+        }
+
+        /// <summary>
+        /// Simple helper that notifies the director when the enemy is destroyed.
+        /// Later you’ll replace this with a real Health/OnDied event.
+        /// </summary>
+        private sealed class AliveTracker : MonoBehaviour
+        {
+            private WaveDirector director;
+            private GameObject owner;
+
+            public void Init(WaveDirector director, GameObject owner)
+            {
+                this.director = director;
+                this.owner = owner;
+            }
+
+            private void OnDestroy()
+            {
+                if (director != null)
+                    director.NotifyDead(owner);
             }
         }
     }

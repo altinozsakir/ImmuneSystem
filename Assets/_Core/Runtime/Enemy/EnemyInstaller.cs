@@ -80,5 +80,11 @@ namespace Core.Enemy
             bb = ctx.BB;
             cooldowns = ctx.Cooldowns;
         }
+
+        public void SetObjective(Transform obj)
+        {
+            objective = obj;
+            bb.Objective = obj;
+        } 
     }
 }
