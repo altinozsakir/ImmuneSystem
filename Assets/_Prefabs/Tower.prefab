@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 8729432830265669387}
   - component: {fileID: 3206146341904286308}
   - component: {fileID: 796850277333406959}
+  - component: {fileID: 865176223926256421}
+  - component: {fileID: -3113303290216472128}
   m_Layer: 8
   m_Name: Tower
   m_TagString: Structure
@@ -150,3 +152,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &865176223926256421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4089169726690008534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d095a0edd4e49724b97f1deaec1b1072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  config: {fileID: 11400000, guid: 96c8c4bade9be324e9bc13c6cbbe7673, type: 2}
+--- !u!114 &-3113303290216472128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4089169726690008534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780aa4fa43d75554fa87eb8d1dbc014a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

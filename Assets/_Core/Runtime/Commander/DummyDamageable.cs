@@ -18,7 +18,11 @@ namespace Core.Commander
             Debug.Log($"{name} took {amount} dmg. HP={hp}");
 
             if (hp <= 0f)
+            {
                 Debug.Log($"{name} died.");
+                Destroy(this.gameObject); 
+            }
+
         }
     }
 }
